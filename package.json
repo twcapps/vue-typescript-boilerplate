@@ -6,13 +6,13 @@
   "author": "Bart van den Ende <info@bartvandenende.nl>",
   "licenses": [{
     "type": "MIT",
-    "url": "https://github.com/caolan/async/raw/master/LICENSE"
+    "url": "https://github.com/twcapps/vue-typescript-boilerplate/raw/master/LICENSE.md"
   }],
-  "repository": "https://github.com/bartsidee/vue-typescript-boilerplate",
+  "repository": "https://github.com/twcapps/vue-typescript-boilerplate",
   "bugs": {
-    "url": "https://github.com/bartsidee/vue-typescript-boilerplate/issues"
+    "url": "https://github.com/twcapps/vue-typescript-boilerplate/issues"
   },
-  "homepage": "https://github.com/bartsidee/vue-typescript-boilerplate",
+  "homepage": "https://github.com/twcapps/vue-typescript-boilerplate",
   "scripts": {
     "dev": "node build/dev-server.js",
     "build": "node build/build.js",
