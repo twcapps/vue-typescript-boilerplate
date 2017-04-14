@@ -19,3 +19,4 @@
     </ul>
   </div>
 </template>
+<style lang="scss" src="./hello.scss" scoped></style>

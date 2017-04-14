@@ -5,3 +5,4 @@
   </div>
 </footer>
 </template>
+<style lang="scss" src="./foot.scss" scoped></style>

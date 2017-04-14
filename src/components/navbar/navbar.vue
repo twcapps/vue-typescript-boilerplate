@@ -9,3 +9,4 @@
   </div>
 </nav>
 </template>
+<style lang="scss" src="./navbar.scss" scoped></style>

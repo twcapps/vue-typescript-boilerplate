@@ -3,14 +3,13 @@ import { Component, Prop } from "vue-typed";
 import * as Logger from "js-logger";
 import * as _ from "lodash";
 
-import "./foot.scss";
-
 let template = require("./foot.vue");
 let config = require("../../config.json");
 
 @Component({
   render: template.render,
   staticRenderFns: template.staticRenderFns,
+  _scopeId: template._scopeId,
   components: {}
 })
 export default class Foot extends Vue {

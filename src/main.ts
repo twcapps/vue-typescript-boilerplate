@@ -36,15 +36,6 @@ Logger.setLevel(logLevel);
   router: router
 })
 class App extends Vue {
-  // message: 'message'
-  // modalView: 'modalView'
-  // test () {
-  //   ...mapActions({
-  //     toast: 'toast',
-  //     dialog: 'dialog'
-  //   })
-  // }
-
   mounted () {
     Logger.log("mounted");
   }
