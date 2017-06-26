@@ -5,15 +5,15 @@
       "dom",
       "es2015"
     ],
-    "module": "commonjs",
+    "module": "es2015",
     "moduleResolution": "node",
     "isolatedModules": false,
     "experimentalDecorators": true,
     "noImplicitAny": false,
     "noImplicitThis": true,
     "strictNullChecks": true,
-    "removeComments": true,
-    "suppressImplicitAnyIndexErrors": true
+    "suppressImplicitAnyIndexErrors": true,
+    "allowSyntheticDefaultImports": true
   },
   "include": [
     "./src/**/*.ts"

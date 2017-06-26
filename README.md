@@ -1,6 +1,6 @@
 # vue-webpack
 
-> A Vue.js Typescript boilerplate
+> A Vue.js Typescript boilerplate with Webpack 3, Vue-Typed, Vuex, Vue-router and localisation 
 
 ## Build Setup
 
