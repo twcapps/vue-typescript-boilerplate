@@ -1,4 +1,4 @@
-import * as Vue from "vue";
+import Vue from "vue";
 import { Component, Prop } from "vue-typed";
 import * as Logger from "js-logger";
 
@@ -9,8 +9,7 @@ import "./jumbotron.scss";
 let template = require("./jumbotron.vue");
 
 @Component({
-  render: template.render,
-  staticRenderFns: template.staticRenderFns,
+  mixins: [template],
   components: {
     Hello
   }

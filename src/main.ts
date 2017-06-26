@@ -1,9 +1,9 @@
 import "./polyfill";
 import "./localisation";
 
-import * as Vue from "vue";
+import Vue from "vue";
 import { Component } from "vue-typed";
-import * as VueRouter from "vue-router";
+import VueRouter from "vue-router";
 import * as Logger from "js-logger";
 
 import { mapGetters, mapActions} from "vuex";
@@ -16,7 +16,8 @@ import Navbar from "./components/navbar";
 import Foot from "./components/foot";
 
 import {router} from "./routes";
-import "src/style.scss";
+
+import "./style.scss";
 let template = require("./main.vue");
 
 Vue.use(VueRouter);
@@ -26,9 +27,8 @@ Logger.useDefaults();
 Logger.setLevel(logLevel);
 
 @Component({
-  render: template.render,
+  mixins: [template],
   store,
-  staticRenderFns: template.staticRenderFns,
   components: {
     Navbar,
     Foot
@@ -39,7 +39,7 @@ class App extends Vue {
   mounted () {
     Logger.log("mounted");
   }
-};
+}
 
 window.onerror = function (errorMsg, url, lineNo, colNo, error) {
   Logger.error("Global event Error: ", errorMsg);

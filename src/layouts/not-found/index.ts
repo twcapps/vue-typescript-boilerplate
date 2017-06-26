@@ -1,10 +1,9 @@
-import * as Vue from "vue";
+import Vue from "vue";
 import { Component } from "vue-typed";
 let template = require("./not-found.vue");
 
 @Component({
-  render: template.render,
-  staticRenderFns: template.staticRenderFns,
+  mixins: [template],
 })
 export default class NotFound extends Vue {
 

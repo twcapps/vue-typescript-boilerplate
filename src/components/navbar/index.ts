@@ -1,14 +1,11 @@
-import * as Vue from "vue";
+import Vue from "vue";
 import { Component, Prop } from "vue-typed";
 import * as Logger from "js-logger";
 
 let template = require("./navbar.vue");
 
 @Component({
-  render: template.render,
-  staticRenderFns: template.staticRenderFns,
-  _scopeId: template._scopeId,
-  components: {}
+  mixins: [template],
 })
 export default class NavBar extends Vue {
 

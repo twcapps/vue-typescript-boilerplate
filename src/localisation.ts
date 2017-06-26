@@ -1,7 +1,7 @@
 import "intl";
 import "intl/locale-data/jsonp/en.js";
 
-import * as Vue from "vue";
+import Vue from "vue";
 import VueLocale from "vue-ts-locale";
 
 let Config = require("./config.json");
