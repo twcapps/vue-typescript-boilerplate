@@ -9,6 +9,10 @@ var chalk = require('chalk')
 var webpack = require('webpack')
 var config = require('../config')
 var webpackConfig = require('./webpack.prod.conf')
+var packageJson = require('../package.json')
+var archiver = require('archiver');
+var fs = require('fs');
+var moment = require('moment');
 
 var spinner = ora('building for production...')
 spinner.start()
@@ -31,5 +35,19 @@ rm(path.join(config.build.assetsRoot, config.build.assetsSubDirectory), err => {
       '  Tip: built files are meant to be served over an HTTP server.\n' +
       '  Opening index.html over file:// won\'t work.\n'
     ))
+  })
+
+  //create zip file
+  rm(path.join(config.build.archiveRoot), err => {
+    var packageName = packageJson.name+'_'+packageJson.environment+'_'+packageJson.version+'.'+packageJson.build+'_'+packageJson.platform+'_' + moment().format('YYYYMMDD') + '.zip';
+    var output = fs.createWriteStream(path.join(config.build.archiveRoot, packageName));
+    var archive = archiver('zip');
+    archive.on('error', function(err) {
+        process.stdout.write(err);
+    });
+    archive.pipe(output);
+    archive.directory(config.build.archiveRoot, true, { date: new Date() });
+    archive.finalize();
+    process.stdout.write("created archive:" +path.join(config.build.archiveRoot, packageName)+ '\n')
   })
 })

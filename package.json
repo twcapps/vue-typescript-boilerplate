@@ -1,8 +1,9 @@
 {
-  "name": "vue-cli-template-webpack",
+  "name": "vue-typescript-boilerplate",
   "version": "2.0.0",
   "license": "MIT",
-  "description": "A full-featured Webpack setup with hot-reload, lint-on-save, unit testing & css extraction.",
+  "description": "VueJs boilerplate using Typescript, Vuex and Vue Router",
+  "author": "Bart van den Ende <info@bartvandenende.nl>",
   "scripts": {
     "docs": "cd docs && gitbook serve",
     "docs:deploy": "bash ./deploy-docs.sh"

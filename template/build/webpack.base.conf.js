@@ -9,7 +9,7 @@ function resolve (dir) {
 
 module.exports = {
   entry: {
-    app: './src/main.js'
+    app: './src/main.ts'
   },
   output: {
     path: config.build.assetsRoot,
@@ -19,7 +19,7 @@ module.exports = {
       : config.dev.assetsPublicPath
   },
   resolve: {
-    extensions: ['.js', '.vue', '.json'],
+    extensions: ['.js', '.vue', '.ts'],
     alias: {
       {{#if_eq build "standalone"}}
       'vue$': 'vue/dist/vue.esm.js',
@@ -39,6 +39,17 @@ module.exports = {
           formatter: require('eslint-friendly-formatter')
         }
       },
+      {
+        test: /\.ts$/,
+        loader: 'tslint-loader',
+        enforce: 'pre',
+        include: [resolve('src'), resolve('test')],
+        options: {
+          emitErrors: false,
+          failOnHint: false,
+          resourcePath: 'src'
+        }
+      },
       {{/lint}}
       {
         test: /\.vue$/,
@@ -53,18 +64,22 @@ module.exports = {
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
         loader: 'url-loader',
-        options: {
-          limit: 10000,
+        query: {
+          limit: 1000,
           name: utils.assetsPath('img/[name].[hash:7].[ext]')
         }
       },
       {
         test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
         loader: 'url-loader',
-        options: {
-          limit: 10000,
+        query: {
+          limit: 1000,
           name: utils.assetsPath('fonts/[name].[hash:7].[ext]')
         }
+      },
+      {
+        test: /\.ts$/,
+        loader: 'awesome-typescript-loader'
       }
     ]
   }
