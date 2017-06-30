@@ -10,5 +10,6 @@ let config = require("../../config.json");
   mixins: [template],
 })
 export default class Foot extends Vue {
-  version: string = `${config.version}.${config.build}`;
+  version: string = `${config.version}`;
+  build: string = `${config.build}`;
 }

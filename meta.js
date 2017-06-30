@@ -6,7 +6,10 @@ module.exports = {
       }
 
       return options.inverse(this);
-    }
+    },
+    "raw-helper": function(options) {
+      return options.fn();
+    },
   },
   "prompts": {
     "name": {
@@ -27,26 +30,22 @@ module.exports = {
     "build": {
       "type": "list",
       "message": "Vue build",
-      "choices": [
-        {
-          "name": "Runtime + Compiler: recommended for most users",
-          "value": "standalone",
-          "short": "standalone"
-        },
+      "choices": [,
         {
           "name": "Runtime-only: about 6KB lighter min+gzip, but templates (or any Vue-specific HTML) are ONLY allowed in .vue files - render functions are required elsewhere",
           "value": "runtime",
           "short": "runtime"
+        },
+        {
+          "name": "Runtime + Compiler: recommended for most users",
+          "value": "standalone",
+          "short": "standalone"
         }
       ]
     },
-    "router": {
-      "type": "confirm",
-      "message": "Install vue-router?"
-    },
     "lint": {
       "type": "confirm",
-      "message": "Use ESLint to lint your code?"
+      "message": "Use TSLint & ESLint to lint your code?"
     },
     "lintConfig": {
       "when": "lint",
@@ -85,8 +84,7 @@ module.exports = {
     "config/test.env.js": "unit || e2e",
     "test/unit/**/*": "unit",
     "build/webpack.test.conf.js": "unit",
-    "test/e2e/**/*": "e2e",
-    "src/router/**/*": "router"
+    "test/e2e/**/*": "e2e"
   },
   "completeMessage": "To get started:\n\n  {{^inPlace}}cd {{destDirName}}\n  {{/inPlace}}npm install\n  npm run dev\n\nDocumentation can be found at https://vuejs-templates.github.io/webpack"
 };

@@ -1,5 +1,6 @@
 import Vue from "vue";
 import BaseButton from "./index";
+import { expect } from "chai";
 
 function getRenderedText (Component, propsData) {
   const Ctor = Vue.extend(Component);
@@ -16,8 +17,9 @@ function getRenderedClassText (Component, propsData, className) {
 describe("foot.vue", () => {
   it("should render version correctly", () => {
     expect(getRenderedClassText(BaseButton, {
-      version: "1.0.0"
+      version: "1.0.0",
+      build: "1"
     }, ".text-muted"))
-    .to.equal("Vue-Typescript-boilerplate 1.0.0 powered by Vue");
+    .to.equal("Vue-Typescript-boilerplate 1.0.0.1 powered by Vue");
   });
 });
