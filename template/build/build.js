@@ -1,6 +1,8 @@
 require('./check-versions')()
 
 process.env.NODE_ENV = 'production'
+process.env.npm_config_platform = process.env.npm_config_platform ? process.env.npm_config_platform : ''
+process.env.npm_config_environment = process.env.npm_config_environment ? process.env.npm_config_environment : 'production'
 
 var ora = require('ora')
 var rm = require('rimraf')
@@ -14,11 +16,14 @@ var archiver = require('archiver');
 var fs = require('fs');
 var moment = require('moment');
 
-var spinner = ora('building for production...')
+var spinner = ora(`building for ${process.env.npm_config_environment}...`)
 spinner.start()
 
-rm(path.join(config.build.assetsRoot, config.build.assetsSubDirectory), err => {
+// step 1: clear build directory
+rm(path.join(config.build.assetsRoot, process.env.npm_config_platform), err => {
   if (err) throw err
+
+  // step 2: build project with webpack
   webpack(webpackConfig, function (err, stats) {
     spinner.stop()
     if (err) throw err
@@ -35,19 +40,30 @@ rm(path.join(config.build.assetsRoot, config.build.assetsSubDirectory), err => {
       '  Tip: built files are meant to be served over an HTTP server.\n' +
       '  Opening index.html over file:// won\'t work.\n'
     ))
-  })
 
-  //create zip file
-  rm(path.join(config.build.archiveRoot), err => {
-    var packageName = packageJson.name+'_'+packageJson.environment+'_'+packageJson.version+'.'+packageJson.build+'_'+packageJson.platform+'_' + moment().format('YYYYMMDD') + '.zip';
-    var output = fs.createWriteStream(path.join(config.build.archiveRoot, packageName));
-    var archive = archiver('zip');
-    archive.on('error', function(err) {
-        process.stdout.write(err);
-    });
-    archive.pipe(output);
-    archive.directory(config.build.archiveRoot, true, { date: new Date() });
-    archive.finalize();
-    process.stdout.write("created archive:" +path.join(config.build.archiveRoot, packageName)+ '\n')
+    // step 3: archive dist folder as zip
+    const packageName = `${packageJSON.name}_${process.env.npm_config_environment}_${packageJSON.version}.` +
+      `${packageJSON.build}_${process.env.npm_config_platform}_${moment().format('YYYYMMDD')}.` +
+      `${process.env.npm_config_platform === 'tizen' ? 'wgt' : 'zip'}`
+
+    rm(path.join(config.build.archiveRoot, packageName), err => {
+      if (err) throw err
+
+      if (!fs.existsSync(config.build.archiveRoot)) {
+        fs.mkdirSync(config.build.archiveRoot)
+      }
+      const output = fs.createWriteStream(path.join(config.build.archiveRoot, packageName))
+
+      const archive = archiver('zip')
+      archive.on('error', (err) => {
+        if (err) throw err
+      })
+      archive.on('close', () => {
+        console.log(chalk.green(`created archive: ${path.join(config.build.archiveRoot, packageName)}\n`))
+      })
+      archive.pipe(output)
+      archive.directory(webpackConfig.output.path, false)
+      archive.finalize()
+    })
   })
 })
