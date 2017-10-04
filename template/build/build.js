@@ -42,8 +42,8 @@ rm(path.join(config.build.assetsRoot, process.env.npm_config_platform), err => {
     ))
 
     // step 3: archive dist folder as zip
-    const packageName = `${packageJSON.name}_${process.env.npm_config_environment}_${packageJSON.version}.` +
-      `${packageJSON.build}_${process.env.npm_config_platform}_${moment().format('YYYYMMDD')}.` +
+    const packageName = `${packageJson.name}_${process.env.npm_config_environment}_${packageJson.version}.` +
+      `${packageJson.build}_${process.env.npm_config_platform}_${moment().format('YYYYMMDD')}.` +
       `${process.env.npm_config_platform === 'tizen' ? 'wgt' : 'zip'}`
 
     rm(path.join(config.build.archiveRoot, packageName), err => {
