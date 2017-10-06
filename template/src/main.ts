@@ -6,7 +6,7 @@ import { Component } from "vue-typed";
 import VueRouter from "vue-router";
 import * as Logger from "js-logger";
 
-import { mapGetters, mapActions} from "vuex";
+import { mapGetters, mapActions } from "vuex";
 
 let Config = require("./config.json");
 
@@ -15,10 +15,10 @@ import store from "./store";
 import Navbar from "./components/navbar";
 import Foot from "./components/foot";
 
-import {router} from "./routes";
+import { router } from "./routes";
 
 import "./style.scss";
-let template = require("./main.vue");
+let template = require("./main.vue").default;
 
 Vue.use(VueRouter);
 

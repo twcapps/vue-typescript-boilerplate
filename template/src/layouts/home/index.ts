@@ -6,7 +6,7 @@ import Jumbotron from "../jumbotron";
 
 import "./home.scss";
 
-let template = require("./home.vue");
+let template = require("./home.vue").default;
 
 @Component({
   mixins: [template],

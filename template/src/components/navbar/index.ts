@@ -2,7 +2,7 @@ import Vue from "vue";
 import { Component, Prop } from "vue-typed";
 import * as Logger from "js-logger";
 
-let template = require("./navbar.vue");
+let template = require("./navbar.vue").default;
 
 @Component({
   mixins: [template],

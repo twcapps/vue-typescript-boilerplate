@@ -1,6 +1,6 @@
 import Vue from "vue";
 import { Component } from "vue-typed";
-let template = require("./not-found.vue");
+let template = require("./not-found.vue").default;
 
 @Component({
   mixins: [template],

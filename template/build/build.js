@@ -1,22 +1,25 @@
+'use strict'
 require('./check-versions')()
 
 process.env.NODE_ENV = 'production'
 process.env.npm_config_platform = process.env.npm_config_platform ? process.env.npm_config_platform : ''
 process.env.npm_config_environment = process.env.npm_config_environment ? process.env.npm_config_environment : 'production'
 
-var ora = require('ora')
-var rm = require('rimraf')
-var path = require('path')
-var chalk = require('chalk')
-var webpack = require('webpack')
-var config = require('../config')
-var webpackConfig = require('./webpack.prod.conf')
-var packageJson = require('../package.json')
-var archiver = require('archiver');
-var fs = require('fs');
-var moment = require('moment');
+const ora = require('ora')
+const rm = require('rimraf')
+const path = require('path')
+const chalk = require('chalk')
+const webpack = require('webpack')
+const config = require('../config')
+const webpackConfig = require('./webpack.prod.conf')
 
-var spinner = ora(`building for ${process.env.npm_config_environment}...`)
+const spinner = ora('building for production...')
+
+const packageJson = require('../package.json')
+const archiver = require('archiver');
+const fs = require('fs');
+const moment = require('moment');
+
 spinner.start()
 
 // step 1: clear build directory
@@ -34,6 +37,11 @@ rm(path.join(config.build.assetsRoot, process.env.npm_config_platform), err => {
       chunks: false,
       chunkModules: false
     }) + '\n\n')
+
+    if (stats.hasErrors()) {
+      console.log(chalk.red('  Build failed with errors.\n'))
+      process.exit(1)
+    }
 
     console.log(chalk.cyan('  Build complete.\n'))
     console.log(chalk.yellow(

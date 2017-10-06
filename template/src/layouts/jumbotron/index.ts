@@ -6,7 +6,7 @@ import Hello from "../../components/hello";
 
 import "./jumbotron.scss";
 
-let template = require("./jumbotron.vue");
+let template = require("./jumbotron.vue").default;
 
 @Component({
   mixins: [template],
