@@ -1,10 +1,8 @@
 import Vue from "vue";
-import { Component, Prop } from "vue-typed";
+import { Component, Prop } from "vue-property-decorator";
 import * as Logger from "js-logger";
-import * as _ from "lodash";
-
-let template = require("./foot.vue").default;
-let config = require("../../config.json");
+import template from "./foot.vue";
+import config from "../../config.json";
 
 @Component({
   mixins: [template],

@@ -1,12 +1,9 @@
 import Vue from "vue";
-import { Component, Prop } from "vue-typed";
+import { Component, Prop } from "vue-property-decorator";
 import * as Logger from "js-logger";
 
 import Hello from "../../components/hello";
-
-import "./jumbotron.scss";
-
-let template = require("./jumbotron.vue").default;
+import template from "./jumbotron.vue";
 
 @Component({
   mixins: [template],

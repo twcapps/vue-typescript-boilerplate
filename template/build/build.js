@@ -16,9 +16,9 @@ const webpackConfig = require('./webpack.prod.conf')
 const spinner = ora('building for production...')
 
 const packageJson = require('../package.json')
-const archiver = require('archiver');
-const fs = require('fs');
-const moment = require('moment');
+const archiver = require('archiver')
+const fs = require('fs')
+const format = require('date-fns/format')
 
 spinner.start()
 
@@ -27,13 +27,13 @@ rm(path.join(config.build.assetsRoot, process.env.npm_config_platform), err => {
   if (err) throw err
 
   // step 2: build project with webpack
-  webpack(webpackConfig, function (err, stats) {
+  webpack(webpackConfig, (err, stats) => {
     spinner.stop()
     if (err) throw err
     process.stdout.write(stats.toString({
       colors: true,
       modules: false,
-      children: false,
+      children: false, // If you are using ts-loader, setting this to true will make TypeScript errors show up during build.
       chunks: false,
       chunkModules: false
     }) + '\n\n')
@@ -51,7 +51,7 @@ rm(path.join(config.build.assetsRoot, process.env.npm_config_platform), err => {
 
     // step 3: archive dist folder as zip
     const packageName = `${packageJson.name}_${process.env.npm_config_environment}_${packageJson.version}.` +
-      `${packageJson.build}_${process.env.npm_config_platform}_${moment().format('YYYYMMDD')}.` +
+      `${packageJson.build}_${process.env.npm_config_platform}_${format(new Date(), 'YYYYMMDD')}.` +
       `${process.env.npm_config_platform === 'tizen' ? 'wgt' : 'zip'}`
 
     rm(path.join(config.build.archiveRoot, packageName), err => {

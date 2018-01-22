@@ -1,8 +1,7 @@
 import Vue from "vue";
-import { Component, Prop } from "vue-typed";
+import { Component, Prop } from "vue-property-decorator";
 import * as Logger from "js-logger";
-
-let template = require("./hello.vue").default;
+import template from "./hello.vue";
 
 @Component({
   mixins: [template],

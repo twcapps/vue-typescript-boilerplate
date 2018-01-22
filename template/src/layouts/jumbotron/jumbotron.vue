@@ -6,3 +6,4 @@
     </div>
   </div>
 </template>
+<style lang="scss" src="./jumbotron.scss" scoped></style>

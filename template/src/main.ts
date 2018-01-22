@@ -2,25 +2,22 @@ import "./polyfill";
 import "./localisation";
 
 import Vue from "vue";
-import { Component } from "vue-typed";
+import { Component } from "vue-property-decorator";
 import VueRouter from "vue-router";
 import * as Logger from "js-logger";
 
 import { mapGetters, mapActions } from "vuex";
 
-let Config = require("./config.json");
+import Config from "./config.json";
 
 import store from "./store";
+import router from "./router";
 
 import Navbar from "./components/navbar";
 import Foot from "./components/foot";
 
-import { router } from "./routes";
-
 import "./style.scss";
-let template = require("./main.vue").default;
-
-Vue.use(VueRouter);
+import template from "./main.vue";
 
 let logLevel = (Config.debug ? Logger.DEBUG : Logger.ERROR);
 Logger.useDefaults();
@@ -37,7 +34,7 @@ Vue.config.errorHandler = function (err, vm, info) {
     Navbar,
     Foot
   },
-  router: router
+  router
 })
 class App extends Vue {
   mounted () {
