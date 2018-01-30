@@ -36,13 +36,29 @@ Vue.config.errorHandler = function (err, vm, info) {
   router
 })
 class App extends Vue {
-  mounted () {
-    Logger.log("mounted");
+  mounted() {
+    Logger.log("App has mounted");
+
+    const loaderVisible = Store.readLoaderVisibility(this.$store);
+    console.log("loader is visible: ", loaderVisible);
+
+    Store.commitLoaderVisibility(this.$store, false);
+  }
+
+  get splashActive() {
+    return Store.readSplashScreenVisibility(this.$store);
+  }
+
+  get loaderActive() {
+    return Store.readLoaderVisibility(this.$store);
   }
 }
 
 window.onerror = function (errorMsg, url, lineNo, colNo, error) {
   Logger.error("Global event: ", errorMsg);
+
+  Store.commitLoggedInState(store, false);
+  Store.commitLoaderVisibility(store, false);
 };
 
 export const app = new App().$mount("#app");

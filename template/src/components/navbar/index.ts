@@ -8,27 +8,33 @@ import * as Store from "../../store";
   mixins: [template],
 })
 export default class NavBar extends Vue {
-  collapsed: boolean = true;
-
-  me: "me";
-  isLoggedIn: "loggedIn";
-
   /*************************************************/
   /* LIFE CYCLE EVENTS */
   /*************************************************/
   created() {
-    // Nothing for now...
+    // When the component gets created.
+  }
+
+  mounted() {
+    // See: https://vuejs.org/v2/guide/instance.html#Instance-Lifecycle-Hooks
+  }
+
+  /*************************************************/
+  /* COMPUTED'S */
+  /*************************************************/
+  get isLoggedIn(): boolean {
+    return Store.readLoggedInState(this.$store);
+  }
+
+  get loginButtonText(): string {
+    return this.isLoggedIn ? "Logout" : "Login";
   }
 
   /*************************************************/
   /* METHODS */
   /*************************************************/
-  collapse() {
-    this.collapsed = !this.collapsed;
-  }
-
-  onClickLogin() {
-    Store.commitLoaderVisibility(this.$store, false);
-    Store.commitLoggedInState(this.$store, true);
+  onClickLoginDemo() {
+    Store.commitLoggedInState(this.$store, !this.isLoggedIn);
+    console.log("User is logged in: ", this.isLoggedIn);
   }
 }
