@@ -6,11 +6,10 @@ import { Component } from "vue-property-decorator";
 import VueRouter from "vue-router";
 import * as Logger from "js-logger";
 
-import { mapGetters, mapActions } from "vuex";
-
 import Config from "./config.json";
 
-import store from "./store";
+import * as Store from "./store";
+import { store } from "./store";
 import router from "./router";
 
 import Navbar from "./components/navbar";

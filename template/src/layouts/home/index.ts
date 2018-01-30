@@ -12,4 +12,5 @@ import template from "./home.vue";
   }
 })
 export default class Home extends Vue {
+
 }
