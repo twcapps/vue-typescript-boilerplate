@@ -6,7 +6,7 @@
         <img src="../../assets/images/logo.png" alt="brand" class="img-responsive" />
         <span>{{{{raw-helper}}}}{{ "navbar-title" | format-message }}{{{{/raw-helper}}}}</span>
       </router-link>
-      <p v-on:click="onClickLoginDemo()">{{{{raw-helper}}}}{{ loginButtonText }}{{{{/raw-helper}}}}</p>
+      <p class="navbar-button-right" v-on:click="onClickLoginDemo()">{{{{raw-helper}}}}{{ loginButtonText }}{{{{/raw-helper}}}}</p>
     </div>
   </div>
 </nav>
