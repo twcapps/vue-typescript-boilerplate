@@ -43,7 +43,7 @@ class App extends Vue {
     Logger.log("mounted");
 
     const loaderVisible = Store.readLoaderVisibility(this.$store);
-    console.log("loader is visible: ", loaderVisible);
+    Logger.info("loader is visible: ", loaderVisible);
   }
 }
 

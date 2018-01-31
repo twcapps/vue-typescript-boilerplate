@@ -26,15 +26,11 @@ export default class NavBar extends Vue {
     return Store.readLoggedInState(this.$store);
   }
 
-  get loginButtonText(): string {
-    return this.isLoggedIn ? "Logout" : "Login";
-  }
-
   /*************************************************/
   /* METHODS */
   /*************************************************/
-  onClickLoginDemo() {
+  onClickLogin() {
     Store.commitLoggedInState(this.$store, !this.isLoggedIn);
-    console.log("User is logged in: ", this.isLoggedIn);
+    Logger.info("User is logged in: ", this.isLoggedIn);
   }
 }
