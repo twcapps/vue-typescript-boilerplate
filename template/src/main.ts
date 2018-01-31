@@ -10,7 +10,9 @@ import { mapGetters, mapActions } from "vuex";
 
 import Config from "./config.json";
 
-import store from "./store";
+import * as Store from "./store";
+import { store } from "./store";
+
 import router from "./router";
 
 import Navbar from "./components/navbar";
@@ -39,11 +41,16 @@ Vue.config.errorHandler = function (err, vm, info) {
 class App extends Vue {
   mounted () {
     Logger.log("mounted");
+
+    const loaderVisible = Store.readLoaderVisibility(this.$store);
+    console.log("loader is visible: ", loaderVisible);
   }
 }
 
 window.onerror = function (errorMsg, url, lineNo, colNo, error) {
   Logger.error("Global event: ", errorMsg);
+
+  Store.commitLoaderVisibility(store, false);
 };
 
 export const app = new App().$mount("#app");
