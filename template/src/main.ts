@@ -6,8 +6,6 @@ import { Component } from "vue-property-decorator";
 import VueRouter from "vue-router";
 import * as Logger from "js-logger";
 
-import { mapGetters, mapActions } from "vuex";
-
 import Config from "./config.json";
 
 import * as Store from "./store";
