@@ -72,4 +72,4 @@ export const commitLoggedInState = commit(mutations.setLoggedInState);
 /*************************************************/
 /* ACTIONS */
 /*************************************************/
-export const dispatchSetDialog = dispatch(actions.loginUser);
+export const dispatchLoginUser = dispatch(actions.loginUser);
